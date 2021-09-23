@@ -82,7 +82,7 @@ def generate_syn_feature(netG, classes, batch_size):
         late_fusion_test_batch_att = fake_sample(batch_size)
         syn_noise.normal_(0, 1)
         with torch.no_grad():
-        output = netG(syn_noise, att=late_fusion_test_batch_att, avg_att=input_test_early_fusion_att)
+            output = netG(syn_noise, att=late_fusion_test_batch_att, avg_att=input_test_early_fusion_att)
         syn_feature.narrow(0, k*batch_size, batch_size).copy_(output)
         syn_label.narrow(0, k*batch_size, batch_size).copy_(input_test_labels)
     return syn_feature, syn_label
